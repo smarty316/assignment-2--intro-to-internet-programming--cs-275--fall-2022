@@ -18,6 +18,7 @@
   "homepage": "https://github.com/smarty316/assignment-2--intro-to-internet-programming--cs-275--fall-2022#readme",
   "devDependencies": {
     "browser-sync": "^2.27.10",
+    "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-eslint": "^6.0.0",

@@ -1,0 +1,19 @@
+default   {
+    font-size: 16px;
+    line-height: 112.5%;
+
+}
+
+h1{
+    font-size: 32px;
+    line-height: 120%;
+}
+
+image1{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+image2
