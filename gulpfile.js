@@ -70,22 +70,23 @@ let transpileJSForProd = () => {
         .pipe(dest(`prod/js`));
 };
 
+
 let serve = () => {
     browserSync({
         notify: true,
-        reloadDelay: 50,
-        browser: browserChoice,
-        server: {
+        reloadDelay: 25, // A delay is sometimes helpful when reloading at the
+        server: {       // end of a series of tasks.
             baseDir: [
                 `temp`,
-                `dev/html`
+                `html`
             ]
         }
     });
-}
 
+    watch(`html/**/*.html`).on(`change`, reload);
+};
 
-
+exports.serve = serve;
 exports.validateHTML = validateHTML;
 exports.lintCSS = lintCSS;
 exports.lintJS = lintJS;
@@ -93,15 +94,3 @@ exports.transpileJSForDev = transpileJSForDev;
 exports.compressHTML = compressHTML;
 exports.compileCSSForProd = compileCSSForProd;
 exports.transpileJSForProd = transpileJSForProd;
-exports.serve = series(
-    validateHTML,
-    compileCSSForDev,
-    lintJS,
-    transpileJSForDev,
-    serve
-);
-exports.build = series(
-    compressHTML,
-    compileCSSForProd,
-    transpileJSForProd,
-);
