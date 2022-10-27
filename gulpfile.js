@@ -17,14 +17,6 @@ let validateHTML = () => {
         .pipe(htmlValidator());
 };
 
-let compileCSSForDev = () => {
-    return src(`css/style.css`)
-        .pipe(sass.sync({
-            outputStyle: `expanded`,
-            precision: 10
-        }).on(`error`, sass.logError))
-        .pipe(dest(`temp/css`));
-};
 
 let lintJS = () => {
     return src(`js/app.js`)
@@ -38,14 +30,6 @@ let compressHTML = () => {
         .pipe(dest(`prod`));
 };
 
-let compileCSSForProd = () => {
-    return src(`css/stye.css`)
-        .pipe(sass.sync({
-            outputStyle: `compressed`,
-            precision: 10
-        }).on(`error`, sass.logError))
-        .pipe(dest(`prod/css`));
-};
 
 let transpileJSForDev = () => {
     return src(`js/app.js`)
@@ -77,13 +61,12 @@ let serve = () => {
         reloadDelay: 25, // A delay is sometimes helpful when reloading at the
         server: {       // end of a series of tasks.
             baseDir: [
-                `temp`,
-                `html`
+                `index.html`
             ]
         }
     });
 
-    watch(`html/**/*.html`).on(`change`, reload);
+    watch(`index.html`).on(`change`, reload);
 };
 
 exports.serve = serve;
@@ -92,5 +75,4 @@ exports.lintCSS = lintCSS;
 exports.lintJS = lintJS;
 exports.transpileJSForDev = transpileJSForDev;
 exports.compressHTML = compressHTML;
-exports.compileCSSForProd = compileCSSForProd;
 exports.transpileJSForProd = transpileJSForProd;
